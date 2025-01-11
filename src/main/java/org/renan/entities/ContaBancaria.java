@@ -5,29 +5,29 @@ import lombok.Data;
 @Data
 public class ContaBancaria {
 
-    private String conta;
-    private String titular;
-    private Double depositoInicial;
-    private Double saldo;
-    private Double valorDeposito;
-    private Double valorSaque;
-    private Double taxaSaque;
+    private Integer number;
+    private String holder;
+    private double balance;
 
-    public ContaBancaria(String conta, String titular, Double depositoInicial, Double taxaSaque) {
-        this.conta = conta;
-        this.titular = titular;
-        this.depositoInicial = depositoInicial;
-        this.saldo = depositoInicial;
-        this.taxaSaque = taxaSaque;
+    public ContaBancaria(Integer number, String holder) {
+        this.number = number;
+        this.holder = holder;
     }
 
-    public void depositar(Double valorDeposito) {
-        saldo = saldo + valorDeposito;
-        System.out.println("Depósito realizado com sucesso! Seu saldo é: " + saldo);
+    public ContaBancaria(Integer number, String holder, Double initialDeposit) {
+        this.number = number;
+        this.holder = holder;
+        deposit(initialDeposit);
     }
 
-    public void sacar(Double valorSaque) {
-        saldo += valorSaque - taxaSaque;
-        System.out.println("Saque realizado com sucesso! Seu saldo é: " + saldo);
+    // Encapsulando a regra de negócio de deposito
+    public void deposit(Double amount) {
+        this.balance += amount;
+        System.out.println("Deposit successful! Your balance is: " + balance);
+    }
+
+    public void withdraw(Double amount) {
+        this.balance -= amount + 5.0;
+        System.out.println("Withdraw successful! Your balance is: " + balance);
     }
 }
